@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>제11회 직무채용박람회 소통 · 동문 멘토 사전질문 보드</title>
+<style>
+:root{
+  --navy:#0b2a75; --navy-d:#071c52; --blue:#1b4fd8; --blue-l:#3d74ff;
+  --sky:#8fb7ff; --ink:#0d1b3e; --line:#dce5f7; --bg:#eef3fc; --white:#fff;
+  --accent:#ff6b3d; --accent2:#ffc247;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Pretendard","Malgun Gothic","맑은 고딕",-apple-system,system-ui,sans-serif;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px 60px}
+
+header{background:linear-gradient(135deg,var(--navy-d) 0%,var(--navy) 45%,var(--blue) 100%);
+  color:#fff;padding:26px 0 22px;position:relative;overflow:hidden}
+header:after{content:"";position:absolute;right:-60px;top:-40px;width:260px;height:260px;
+  border-radius:50%;background:rgba(255,255,255,.06)}
+.hd{max-width:1180px;margin:0 auto;padding:0 18px;position:relative;z-index:1}
+.badge{display:inline-block;font-size:12px;letter-spacing:.06em;background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.3);padding:5px 11px;border-radius:999px}
+h1{margin:12px 0 6px;font-size:29px;font-weight:800;letter-spacing:-.02em}
+h1 b{color:var(--accent2)}
+.sub{font-size:13.5px;color:#c9daff}
+
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;
+  box-shadow:0 6px 22px rgba(11,42,117,.07);padding:18px;margin-top:-18px;position:relative;z-index:2}
+.ctrl{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.field{flex:1;min-width:260px}
+label{display:block;font-size:12px;font-weight:700;color:var(--navy);margin-bottom:6px}
+select,input[type=search]{width:100%;padding:11px 12px;border:1.5px solid var(--line);
+  border-radius:10px;font-size:14.5px;font-family:inherit;background:#fbfcff;color:var(--ink)}
+select:focus,input:focus{outline:none;border-color:var(--blue-l);background:#fff}
+button{padding:11px 16px;border:0;border-radius:10px;background:var(--blue);color:#fff;
+  font-weight:700;font-size:14px;cursor:pointer;font-family:inherit}
+button:hover{background:var(--blue-l)}
+button.ghost{background:#fff;color:var(--navy);border:1.5px solid var(--line)}
+
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.stat{background:var(--navy);color:#fff;border-radius:12px;padding:10px 16px;min-width:112px}
+.stat b{display:block;font-size:22px;line-height:1.15}
+.stat span{font-size:11.5px;color:var(--sky)}
+.stat.o{background:var(--accent)}.stat.o span{color:#ffe2d6}
+.stat.y{background:var(--accent2);color:#4a2c00}.stat.y span{color:#7a4c00}
+
+h2{font-size:19px;margin:34px 0 12px;color:var(--navy);display:flex;align-items:center;gap:9px}
+h2:before{content:"";width:5px;height:19px;background:var(--accent);border-radius:3px}
+.note{font-size:12.5px;color:#5b6b90;margin:-6px 0 12px}
+
+.tablebox{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  box-shadow:0 6px 22px rgba(11,42,117,.06)}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:820px}
+thead th{background:var(--navy);color:#fff;text-align:left;padding:12px 12px;font-weight:700;
+  font-size:12.5px;letter-spacing:.02em;white-space:nowrap;position:sticky;top:0}
+tbody td{padding:12px;border-top:1px solid var(--line);vertical-align:top;
+  white-space:pre-wrap;line-height:1.6;word-break:break-word}
+tbody tr:nth-child(even){background:#f7faff}
+td.dept{font-weight:700;color:var(--navy);white-space:nowrap}
+td.meta{white-space:nowrap;color:#44557f}
+td.q1{background:rgba(27,79,216,.04)}
+td.q2{background:rgba(255,107,61,.05)}
+.no{color:#9aa7c4}
+.idx{color:#9aa7c4;font-size:12px;width:34px}
+
+.clouds{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:860px){.clouds{grid-template-columns:1fr}}
+.cloudcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;
+  box-shadow:0 6px 22px rgba(11,42,117,.06)}
+.cloudcard h3{margin:0 0 4px;font-size:15.5px;color:var(--navy)}
+.cloudcard .cap{font-size:12px;color:#6b7ba0;margin-bottom:12px}
+.circle{position:relative;width:100%;aspect-ratio:1/1;border-radius:50%;overflow:hidden;
+  background:radial-gradient(circle at 50% 42%,#f4f8ff 0%,#e6eeff 62%,#d9e5fb 100%);
+  border:2px solid var(--line)}
+.circle.q2{background:radial-gradient(circle at 50% 42%,#fff6f2 0%,#ffe9df 62%,#ffdccd 100%)}
+.circle span{position:absolute;white-space:nowrap;font-weight:800;line-height:1;
+  transform:translate(-50%,-50%);cursor:default}
+.circle span:hover{opacity:.6}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{font-size:12px;background:#eef3ff;color:var(--navy);border:1px solid #d5e1fb;
+  padding:4px 9px;border-radius:999px}
+.chip b{color:var(--accent);margin-left:4px}
+.cloudcard.q2 .chip{background:#fff1ea;border-color:#ffd9c7}
+
+.empty{padding:40px;text-align:center;color:#7c8aac;font-size:14px}
+footer{margin-top:34px;font-size:12px;color:#6b7ba0;text-align:center;line-height:1.8}
+@media print{
+  header{background:var(--navy)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .panel,button{display:none}
+  .tablebox,.cloudcard{box-shadow:none}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="hd">
+    <span class="badge">2026 경기대학교 · 인재개발처 대학일자리플러스센터</span>
+    <h1>제11회 직무채용박람회 <b>소통</b> · 동문 멘토 사전질문 보드</h1>
+    <div class="sub">2026. 9. 16.(수) 12:30–16:30 · 경기대학교 수원캠퍼스 실내체육관(제3강의동)</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="panel">
+    <div class="ctrl">
+      <div class="field">
+        <label for="q">기업 검색</label>
+        <input id="q" type="search" placeholder="기업명 · 직무 키워드 입력 (예: 하나은행, 회계)" autocomplete="off">
+      </div>
+      <div class="field" style="flex:2">
+        <label for="sel">기업명 (넘버링 기준)</label>
+        <select id="sel"><option>불러오는 중…</option></select>
+      </div>
+      <button id="reload" class="ghost" title="구글 시트에서 최신 데이터 다시 불러오기">↻ 새로고침</button>
+    </div>
+    <div class="stats">
+      <div class="stat"><b id="s1">–</b><span>신청 학생</span></div>
+      <div class="stat o"><b id="s2">–</b><span>사전질문 1 응답</span></div>
+      <div class="stat y"><b id="s3">–</b><span>사전질문 2 응답</span></div>
+      <div class="stat" style="background:#fff;color:#0b2a75;border:1.5px solid #dce5f7">
+        <b id="s4" style="font-size:14px;padding-top:5px">–</b><span style="color:#6b7ba0">최종 동기화</span></div>
+    </div>
+  </div>
+
+  <h2>사전질문 리스트</h2>
+  <div class="note">학과명 오름차순 정렬 · 구글 시트 「신청+사전질문」 실시간 연동</div>
+  <div class="tablebox">
+    <div class="scroll"><table>
+      <thead><tr>
+        <th class="idx">#</th><th>학과</th><th>이름</th><th>학년</th><th>시간</th>
+        <th style="width:33%">사전질문 1 — 직무 역량 · 인재상</th>
+        <th style="width:33%">사전질문 2 — 서류/면접 · 어학 · 자격증</th>
+      </tr></thead>
+      <tbody id="tb"><tr><td colspan="7" class="empty">데이터를 불러오는 중입니다…</td></tr></tbody>
+    </table></div>
+  </div>
+
+  <h2>핵심 키워드 워드클라우드</h2>
+  <div class="note">선택한 기업 학생들의 질문에서 추출한 키워드 · 글자 크기 = 언급 빈도</div>
+  <div class="clouds">
+    <div class="cloudcard">
+      <h3>사전질문 1 키워드</h3>
+      <div class="cap">희망 직무의 핵심 실무 역량 · 인재상 · 근무환경</div>
+      <div class="circle" id="c1"></div>
+      <div class="chips" id="k1"></div>
+    </div>
+    <div class="cloudcard q2">
+      <h3>사전질문 2 키워드</h3>
+      <div class="cap">서류/면접 준비 전략 · 어학 · 자격증 · 포트폴리오</div>
+      <div class="circle q2" id="c2"></div>
+      <div class="chips" id="k2"></div>
+    </div>
+  </div>
+
+  <footer>
+    데이터 출처: 구글 스프레드시트 「신청+사전질문」 시트 · 5분마다 자동 갱신<br>
+    시트에 신청자·사전질문이 추가되면 자동 반영됩니다.
+  </footer>
+</div>
+
+<script>
+const SHEET_ID = '1yhhG0z90ueUO9cyAHlc4IoCVzCMXvjo8UskltCsXP4c';
+const GID = '984055483';            // 「신청+사전질문」 시트
+const CSV = () => 'https://docs.google.com/spreadsheets/d/' + SHEET_ID +
+                  '/gviz/tq?tqx=out:csv&gid=' + GID + '&_=' + Date.now();
+
+/* ---------- CSV 파서 ---------- */
+function parseCSV(t){
+  const rows=[]; let row=[], f='', q=false;
+  t = t.replace(/\r\n/g,'\n').replace(/\r/g,'\n');
+  for(let i=0;i<t.length;i++){
+    const c=t[i];
+    if(q){ if(c==='"'){ if(t[i+1]==='"'){f+='"';i++;} else q=false; } else f+=c; }
+    else if(c==='"') q=true;
+    else if(c===','){ row.push(f); f=''; }
+    else if(c==='\n'){ row.push(f); rows.push(row); row=[]; f=''; }
+    else f+=c;
+  }
+  if(f.length||row.length){ row.push(f); rows.push(row); }
+  return rows;
+}
+
+/* ---------- 한국어 간이 키워드 추출 ---------- */
+const STOP = new Set(('것 수 등 및 관련 대해 대한 무엇 무엇인지 어떤 어떻게 어떠한 있는지 있을 있는 없는 가장 정말 조금 매우 제가 저는 저희 그리고 하지만 그런 이런 저런 때문 통해 위해 경우 정도 부분 생각 궁금 궁금합니다 궁금해요 알고 싶습니다 합니다 입니다 있습니다 해서 하는 하고 되는 되고 드립니다 부탁 질문 답변 여쭙 여쭤 관해 여부 자체 이상 이하 다른 많이 많은 어느 무슨 실제 실제로 특히 각각 또한 혹은 또는 만약 정확히 가지 여러 다양한 해당 관심 사항 내용 이야기 말씀 였습니다 이라고 라고 인지 인가요 나요 까요 니다 네요 어요 아요 라면 으로서 로서 하나 있어 없어 좋을 좋은 좋겠습니다 어렵 힘든 대하여 대해서 있는데 싶은 싶어 관하여 주로 것이 것을 것은 필요한 현재 향후 이후 이전 관련된 어떠 저희가 제일 조언을 있으면 되면 라면서 하려면 위한 경우가 위주로 통한 함께 모두 전반 전반적으로 보통 보다는 참고').split(/\s+/));
+const JOSA = /(으로서|으로써|에서의|에게서|이라는|라는|에서는|에게는|으로는|와의|과의|에서|에게|으로|처럼|보다|까지|부터|마다|이나|이란|라도|든지|이든|은|는|이|가|을|를|의|에|도|와|과|로|만|나|랑|께)$/;
+const TAIL = /(합니다|했습니다|하는지|한지|해서|하며|하고|해요|이다|입니다|인가요|일까요|될까요|되나요|있나요|하나요|한가요|드립니다|드려요|싶어요|싶습니다|되는|되어|되었|하시는|하시|한다|싶음|인지|였는지|드릴|주시)$/;
+
+function keywords(texts, limit=55){
+  const cnt = new Map();
+  for(const t of texts){
+    if(!t) continue;
+    for(let w of t.split(/[^0-9A-Za-z가-힣&+]+/)){
+      if(!w || /^[0-9]+$/.test(w)) continue;
+      if(/[가-힣]/.test(w)){
+        w = w.replace(TAIL,'');
+        if(w.length>2) w = w.replace(JOSA,'');
+        if(w.length<2) continue;
+      } else {
+        if(w.length<2) continue;
+        w = w.toUpperCase();
+      }
+      if(STOP.has(w)) continue;
+      cnt.set(w,(cnt.get(w)||0)+1);
+    }
+  }
+  let list = [...cnt.entries()]
+    .sort((a,b)=> b[1]-a[1] || a[0].localeCompare(b[0],'ko'));
+  const multi = list.filter(e=>e[1]>=2);
+  if(multi.length>=10) list = multi;          // 표본 적으면 1회 키워드도 노출
+  return list.slice(0,limit).map(([text,count])=>({text,count}));
+}
+
+/* ---------- 원형 워드클라우드 (나선 배치 + 충돌 검사) ---------- */
+const PAL1=['#0b2a75','#1b4fd8','#3d74ff','#5b8bff','#2c3e8f','#7fa4ff'];
+const PAL2=['#c2410c','#ff6b3d','#e8890c','#ff9466','#a3370a','#ffb07a'];
+
+function drawCloud(el, words, pal){
+  el.innerHTML='';
+  const S = el.clientWidth || 340, R = S/2 - 6, cx=S/2, cy=S/2;
+  if(!words.length){ el.innerHTML='<div class="empty" style="padding-top:42%">키워드 없음</div>'; return; }
+  const max = words[0].count, min = words[words.length-1].count;
+  const ctx = document.createElement('canvas').getContext('2d');
+  const placed = [];
+  words.forEach((w,i)=>{
+    const ratio = max===min ? 0.6 : (w.count-min)/(max-min);
+    const size = Math.max(11, Math.round(S*0.036 + Math.pow(ratio,0.62)*S*0.086));
+    const font = '800 ' + size + 'px Pretendard,"Malgun Gothic",sans-serif';
+    ctx.font = font;
+    const tw = ctx.measureText(w.text).width, th = size*1.1;
+    let x=cx, y=cy, ok=false;
+    for(let t=0;t<3000;t++){
+      const a = t*0.26, r = 2.4*a;
+      x = cx + r*Math.cos(a); y = cy + r*Math.sin(a)*0.88;
+      const l=x-tw/2, rr=x+tw/2, tp=y-th/2, bt=y+th/2;
+      // 네 모서리 모두 원 안쪽인지
+      if(Math.hypot(l-cx,tp-cy)>R || Math.hypot(rr-cx,tp-cy)>R ||
+         Math.hypot(l-cx,bt-cy)>R || Math.hypot(rr-cx,bt-cy)>R) continue;
+      if(placed.some(p=> l < p.r+3 && rr > p.l-3 && tp < p.b+2 && bt > p.t-2)) continue;
+      placed.push({l,r:rr,t:tp,b:bt}); ok=true; break;
+    }
+    if(!ok) return;
+    const s = document.createElement('span');
+    s.textContent = w.text;
+    s.style.cssText = 'left:'+x+'px;top:'+y+'px;font:'+font+';color:'+pal[i%pal.length]+
+                      ';opacity:'+(0.55+0.45*ratio);
+    s.title = w.text + ' · ' + w.count + '회';
+    el.appendChild(s);
+  });
+}
+
+/* ---------- 상태 ---------- */
+let ROWS=[], COMPANIES=[];
+const $ = id => document.getElementById(id);
+const esc = s => String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+function fillSelect(filter){
+  const f=(filter||'').trim().toLowerCase();
+  const list = COMPANIES.filter(c=>!f || c.toLowerCase().includes(f));
+  const cur = $('sel').value;
+  $('sel').innerHTML = list.length
+    ? list.map(c=>'<option value="'+esc(c)+'">'+esc(c)+'</option>').join('')
+    : '<option value="">검색 결과 없음</option>';
+  if(list.indexOf(cur)>=0) $('sel').value = cur;
+  render();
+}
+
+function render(){
+  const co = $('sel').value;
+  const rows = ROWS.filter(r=>r.co===co)
+    .sort((a,b)=> a.dept.localeCompare(b.dept,'ko') || a.name.localeCompare(b.name,'ko'));
+  $('s1').textContent = rows.length;
+  $('s2').textContent = rows.filter(r=>r.q1).length;
+  $('s3').textContent = rows.filter(r=>r.q2).length;
+
+  $('tb').innerHTML = rows.length ? rows.map((r,i)=>
+    '<tr><td class="idx">'+(i+1)+'</td>'+
+    '<td class="dept">'+esc(r.dept)+'</td>'+
+    '<td class="meta"><b>'+esc(r.name)+'</b></td>'+
+    '<td class="meta">'+esc(r.grade)+'</td>'+
+    '<td class="meta">'+esc(r.time)+'</td>'+
+    '<td class="q1">'+(r.q1?esc(r.q1):'<span class="no">— 미작성 —</span>')+'</td>'+
+    '<td class="q2">'+(r.q2?esc(r.q2):'<span class="no">— 미작성 —</span>')+'</td></tr>'
+  ).join('') : '<tr><td colspan="7" class="empty">해당 기업의 신청 내역이 없습니다.</td></tr>';
+
+  const k1 = keywords(rows.map(r=>r.q1)), k2 = keywords(rows.map(r=>r.q2));
+  drawCloud($('c1'), k1, PAL1);
+  drawCloud($('c2'), k2, PAL2);
+  $('k1').innerHTML = k1.slice(0,14).map(k=>'<span class="chip">'+esc(k.text)+'<b>'+k.count+'</b></span>').join('');
+  $('k2').innerHTML = k2.slice(0,14).map(k=>'<span class="chip">'+esc(k.text)+'<b>'+k.count+'</b></span>').join('');
+}
+
+async function load(){
+  $('reload').textContent='불러오는 중…';
+  try{
+    const res = await fetch(CSV());
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const rows = parseCSV(await res.text());
+    const head = rows.shift().map(h=>h.replace(/\s/g,''));
+    const ix = n => head.findIndex(h=>h.indexOf(n)>=0);
+    const cCo=ix('기업명'), cName=ix('이름'), cGrade=ix('학년'),
+          cDept=ix('학과'), cTime=ix('시간'), cQ1=ix('사전질문1'), cQ2=ix('사전질문2');
+    ROWS = rows.filter(r=>r[cCo] && r[cCo].trim()).map(r=>({
+      co:r[cCo].trim(), name:(r[cName]||'').trim(), grade:(r[cGrade]||'').trim(),
+      dept:(r[cDept]||'').trim(), time:(r[cTime]||'').trim(),
+      q1:(r[cQ1]||'').trim(), q2:(r[cQ2]||'').trim()
+    }));
+    COMPANIES = [...new Set(ROWS.map(r=>r.co))].sort((a,b)=>a.localeCompare(b,'ko'));
+    $('s4').textContent = new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
+    fillSelect($('q').value);
+  }catch(e){
+    $('tb').innerHTML = '<tr><td colspan="7" class="empty">데이터를 불러오지 못했습니다.<br>'+
+      '스프레드시트 공유 설정이 <b>“링크가 있는 모든 사용자 · 뷰어”</b>인지 확인해 주세요.<br>'+
+      '<small>'+esc(e.message)+'</small></td></tr>';
+  }
+  $('reload').textContent='↻ 새로고침';
+}
+
+$('q').addEventListener('input', e=>fillSelect(e.target.value));
+$('sel').addEventListener('change', render);
+$('reload').addEventListener('click', load);
+addEventListener('resize', function(){ clearTimeout(window._rz); window._rz=setTimeout(render,220); });
+load();
+setInterval(load, 5*60*1000);   // 5분마다 자동 반영
+</script>
+</body>
+</html>
