@@ -100,7 +100,7 @@ footer{margin-top:34px;font-size:12px;color:#6b7ba0;text-align:center;line-heigh
   <div class="hd">
     <span class="badge">2026 경기대학교 · 인재개발처 대학일자리플러스센터</span>
     <h1>제11회 직무채용박람회 <b>소통</b> · 동문 멘토 사전질문 보드</h1>
-    <div class="sub">2026. 9. 16.(수) 12:30–16:30 · 경기대학교 수원캠퍼스 실내체육관(제3강의동)</div>
+    <div class="sub">2026. 9. 16.(수) 12:30–16:30 · 경기대학교 수원캠퍼스 실내체육관(제3강의동) · <a href="c/" style="color:#fff;text-decoration:underline;text-underline-offset:3px">기업별 페이지 목록</a></div>
   </div>
 </header>
 
@@ -131,7 +131,7 @@ footer{margin-top:34px;font-size:12px;color:#6b7ba0;text-align:center;line-heigh
   <div class="tablebox">
     <div class="scroll"><table>
       <thead><tr>
-        <th class="idx">#</th><th>학과</th><th>이름</th><th>학년</th><th>시간</th>
+        <th class="idx">#</th><th>학과</th><th>이름</th><th>학년</th><th>상태 / 시간</th>
         <th style="width:33%">사전질문 1 — 직무 역량 · 인재상</th>
         <th style="width:33%">사전질문 2 — 서류/면접 · 어학 · 자격증</th>
       </tr></thead>
@@ -255,6 +255,8 @@ function drawCloud(el, words, pal){
 /* ---------- 상태 ---------- */
 let ROWS=[], COMPANIES=[];
 const $ = id => document.getElementById(id);
+const TXTAREA = document.createElement('textarea');
+function decode(s){ if(!s || s.indexOf('&')<0) return s; TXTAREA.innerHTML=s; return TXTAREA.value; }
 const esc = s => String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 
 function fillSelect(filter){
@@ -304,9 +306,9 @@ async function load(){
     const cCo=ix('기업명'), cName=ix('이름'), cGrade=ix('학년'),
           cDept=ix('학과'), cTime=ix('시간'), cQ1=ix('사전질문1'), cQ2=ix('사전질문2');
     ROWS = rows.filter(r=>r[cCo] && r[cCo].trim()).map(r=>({
-      co:r[cCo].trim(), name:(r[cName]||'').trim(), grade:(r[cGrade]||'').trim(),
-      dept:(r[cDept]||'').trim(), time:(r[cTime]||'').trim(),
-      q1:(r[cQ1]||'').trim(), q2:(r[cQ2]||'').trim()
+      co:r[cCo].trim(), name:decode((r[cName]||'').trim()), grade:(r[cGrade]||'').trim(),
+      dept:decode((r[cDept]||'').trim()), time:(r[cTime]||'').trim(),
+      q1:decode((r[cQ1]||'').trim()), q2:decode((r[cQ2]||'').trim())
     }));
     COMPANIES = [...new Set(ROWS.map(r=>r.co))].sort((a,b)=>a.localeCompare(b,'ko'));
     $('s4').textContent = new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
